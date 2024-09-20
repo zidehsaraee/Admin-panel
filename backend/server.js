@@ -39,4 +39,4 @@ app.use("/api/offs", offsRouter);
 app.use("/uploads", express.static("uploads"));
 app.use("/api/products", upload.single("image"), productsRouter);
 
-app.listen(PORT, console.log("server is running newDashboard on port 5000"));
+app.listen(PORT, console.log(`server is running newDashboard on port ${PORT}`));
