@@ -1,0 +1,12 @@
+@import "./Reset-css.css";
+
+:root {
+  --white: rgb(255, 255, 255);
+  --light-gray2:rgb(158,158,158);
+  --black: rgb(0, 0, 0);
+  --light-gray: rgb(238, 238, 238);
+  --very-light-gray: rgb(247, 249, 252);
+  --close-black: rgb(36, 41, 46);
+  --semi-transparent-blue: rgba(55, 111, 208, 0.125);
+  --dark-blue-gray: rgb(35, 48, 68);
+}

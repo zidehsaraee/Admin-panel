@@ -1,0 +1,67 @@
+1.Products
+    id  
+    title
+    price
+    count
+    img
+    popularity
+    sale
+    colors
+
+2.Users
+    id
+    firstname
+    lastname
+    username
+    password
+    phone
+    email
+    city
+    address
+    score
+    buy
+
+3.Comments
+    id
+    body
+    date
+    hour
+    userID (forign key =>(Users))
+    productID (forign key =>(Products))
+    isAccept
+
+
+
+4.Orders
+    id
+    productID (forign key =>(Products))
+    userID (forign key =>(Users))
+    date
+    hour
+    price
+    sale
+    popularity
+    count
+    sale_count
+    isActive 0  1
+
+
+5.Offs
+    id
+    code
+    percent
+    productID (forign key =>(Products))
+    adminID (forign key =>(Admin))
+    date
+    isActive 0  1
+
+6.admins
+    id
+    firstame
+    lastname
+    username
+    password
+    role
+    img
+    token
+    
