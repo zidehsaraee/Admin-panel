@@ -4,7 +4,6 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const multer = require("multer");
 const path = require("path");
-const db=require('./db/OnlineShop')
 
 const productsRouter = require("./routes/productsRoutes");
 const commentsRouter = require("./routes/commentsRoutes");
@@ -12,7 +11,6 @@ const usersRouter = require("./routes/usersRoutes");
 const ordersRuter = require("./routes/ordersRoutes");
 const adminsRouter = require("./routes/adminsRouts");
 const offsRouter = require("./routes/offsRoutes");
-
 
 const app = express();
 
