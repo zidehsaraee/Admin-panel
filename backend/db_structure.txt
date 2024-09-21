@@ -1,4 +1,4 @@
-1.Products
+1.products
     id  
     title
     price
@@ -8,7 +8,7 @@
     sale
     colors
 
-2.Users
+2.users
     id
     firstname
     lastname
@@ -21,21 +21,21 @@
     score
     buy
 
-3.Comments
+3.comments
     id
     body
     date
     hour
-    userID (forign key =>(Users))
+    userID (forign key =>(users))
     productID (forign key =>(Products))
     isAccept
 
 
 
-4.Orders
+4.orders
     id
-    productID (forign key =>(Products))
-    userID (forign key =>(Users))
+    productID (forign key =>(products))
+    userID (forign key =>(users))
     date
     hour
     price
@@ -43,7 +43,7 @@
     popularity
     count
     sale_count
-    isActive 0  1
+    isActive 
 
 
 5.Offs
@@ -53,7 +53,7 @@
     productID (forign key =>(Products))
     adminID (forign key =>(Admin))
     date
-    isActive 0  1
+    isActive 
 
 6.admins
     id
