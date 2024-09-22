@@ -21,23 +21,44 @@ export default function Home() {
     fetchOrdersCount();
   }, []);
 
-  const fetchUserCount = () => {
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users`)
-      .then((res) => res.json())
-      .then((result) => setUserCount(result.length))
-      .catch((error) => console.error("Error fetching user count:", error));
+  const fetchUserCount = async () => {
+    try {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users`);
+      if (!res.ok) throw new Error("Network response was not ok");
+      const result = await res.json();
+      setUserCount(result.length);
+    } catch (error) {
+      console.error("Error fetching user count:", error);
+      setUserCount(0); // Set default value on error
+    }
   };
-  const fetchProductsCount = () => {
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products/`)
-      .then((res) => res.json())
-      .then((result) => setProductCount(result.length))
-      .catch((error) => console.error("Error fetching product count:", error));
+
+  const fetchProductsCount = async () => {
+    try {
+      const res = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/api/products/`
+      );
+      if (!res.ok) throw new Error("Network response was not ok");
+      const result = await res.json();
+      setProductCount(result.length);
+    } catch (error) {
+      console.error("Error fetching product count:", error);
+      setProductCount(0); // Set default value on error
+    }
   };
-  const fetchOrdersCount = () => {
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/orders`)
-      .then((res) => res.json())
-      .then((result) => setOrderCount(result.length))
-      .catch((error) => console.error("Error fetching order count:", error));
+
+  const fetchOrdersCount = async () => {
+    try {
+      const res = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/api/orders`
+      );
+      if (!res.ok) throw new Error("Network response was not ok");
+      const result = await res.json();
+      setOrderCount(result.length);
+    } catch (error) {
+      console.error("Error fetching order count:", error);
+      setOrderCount(0); // Set default value on error
+    }
   };
 
   return (
@@ -264,11 +285,11 @@ export default function Home() {
           alignItems: "center",
         }}
       >
-        <Grid item xs={12} md={12} xl={8} sx={{ height: '500px' }}>
+        <Grid item xs={12} md={12} xl={8} sx={{ height: "500px" }}>
           <ChartComponent />
         </Grid>
 
-        <Grid item xs={12} md={12} xl={4} sx={{ height: '500px' }}>
+        <Grid item xs={12} md={12} xl={4} sx={{ height: "500px" }}>
           <TrafficSrs />
         </Grid>
       </Grid>

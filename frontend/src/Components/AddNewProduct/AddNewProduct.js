@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
@@ -45,10 +45,23 @@ export default function AddNewProduct({ getAllproducts }) {
       method: "POST",
       body: formData,
     })
-      .then((res) => res.json())
-      .then((result) => {
-        getAllproducts();
-        getEmptyInputs();
+      .then((res) => {
+        // Log the response status and body
+        console.log("Response Status:", res.status);
+        return res.text(); // Get the response as text
+      })
+      .then((text) => {
+        console.log("Response Body:", text); // Log the response body
+        try {
+          const result = JSON.parse(text); // Attempt to parse as JSON
+          getAllproducts();
+          getEmptyInputs();
+        } catch (error) {
+          console.error("JSON Parse Error:", error); // Handle parse error
+        }
+      })
+      .catch((error) => {
+        console.error("Fetch Error:", error);
       });
   };
 

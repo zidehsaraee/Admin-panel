@@ -21,9 +21,9 @@ productsRouter.get("/", (req, res) => {
 
   OnlineShopDB.query(selectAllProductsQuery, (err, result) => {
     if (err) {
-      res.send(null);
+      return res.status(500).json({ error: "Error fetching products" });
     } else {
-      res.send(result);
+      res.json(result);
     }
   });
 });
@@ -34,37 +34,33 @@ productsRouter.delete("/:productID", (req, res) => {
   let deleteProductCommentsQuery = `DELETE FROM comments WHERE productID=${productID}`;
   OnlineShopDB.query(deleteProductCommentsQuery, (err, result) => {
     if (err) {
-      res.send(err);
-      return;
+      return res.status(500).json({ error: "Error deleting comments" });
     }
   });
 
   let deleteProductOffsQuery = `DELETE FROM offs WHERE productID=${productID}`;
   OnlineShopDB.query(deleteProductOffsQuery, (err, result) => {
     if (err) {
-      res.send(err);
-      return;
+      return res.status(500).json({ error: "Error deleting offs" });
     }
   });
 
   let deleteProductOrdersQuery = `DELETE FROM orders WHERE productID=${productID}`;
   OnlineShopDB.query(deleteProductOrdersQuery, (err, result) => {
     if (err) {
-      res.send(err);
-      return;
+      return res.status(500).json({ error: "Error deleting orders" });
     }
   });
 
   let deleteProductQuery = `DELETE FROM products WHERE id = ${productID}`;
   OnlineShopDB.query(deleteProductQuery, (err, result) => {
     if (err) {
-      res.send(null);
+      return res.status(500).json({ error: "Error deleting product" });
     } else {
-      res.send(result);
+      res.json({ message: "Product deleted successfully", result });
     }
   });
 });
-
 
 productsRouter.put("/:productID", upload.single("image"), (req, res) => {
   let body = req.body;
@@ -84,13 +80,12 @@ productsRouter.put("/:productID", upload.single("image"), (req, res) => {
   OnlineShopDB.query(updateProductQuery, (err, result) => {
     if (err) {
       console.log(err);
-      res.send(null);
+      return res.status(500).json({ error: "Error updating product" });
     } else {
-      res.send(result);
+      res.json({ message: "Product updated successfully", result });
     }
   });
 });
-
 
 productsRouter.post("/", upload.single("image"), (req, res) => {
   let body = req.body;
@@ -103,9 +98,9 @@ productsRouter.post("/", upload.single("image"), (req, res) => {
   OnlineShopDB.query(addNewProductQuery, (err, result) => {
     if (err) {
       console.log(err);
-      res.send(null);
+      return res.status(500).json({ error: "Error adding product" });
     } else {
-      res.send(result);
+      res.status(201).json({ message: "Product added successfully", result });
     }
   });
 });
