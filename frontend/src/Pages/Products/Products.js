@@ -1,3 +1,4 @@
+require('dotenv').config();
 import React, { useState, useEffect } from "react";
 import "./Products.css";
 import ProductsTable from "../../Components/ProductsTable/ProductsTable";
@@ -10,7 +11,7 @@ export default function Products() {
   }, []);
 
   const getAllproducts = () => {
-    fetch("http://localhost:5000/api/products/")
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products/`)
       .then((res) => res.json())
       .then((products) => setAllproducts(products));
   };

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+require("dotenv").config();
+import React, { useState } from "react"
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
@@ -41,8 +42,8 @@ export default function AddNewProduct({ getAllproducts }) {
     formData.append("sale", newProductsale);
     formData.append("colors", newProductColor);
 
-    fetch("http://localhost:5000/api/products/", {
-      method: "post",
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products/`, {
+      method: "POST",
       body: formData,
     })
       .then((res) => res.json())

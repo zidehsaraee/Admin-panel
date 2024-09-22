@@ -1,3 +1,4 @@
+require('dotenv').config();
 import React, { useState, useEffect } from "react";
 import DeleteModal from "../../Components/Modals/DeleteModal/DeleteModal";
 import EditModal from "../../Components/Modals/EditModal/EditModal";
@@ -45,7 +46,7 @@ export default function Comments() {
     getAllComments();
   }, []);
   const getAllComments = () => {
-    fetch("http://localhost:5000/api/comments")
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/comments`)
       .then((res) => res.json())
       .then((result) => setAllComments(result));
   };
@@ -65,7 +66,7 @@ export default function Comments() {
     setShowDeleteModal(false);
   };
   const submitDeleteComment = () => {
-    fetch(`http://localhost:5000/api/comments/${commentID}`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/comments/${commentID}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -85,7 +86,7 @@ export default function Comments() {
     const editedCommentBody = {
       body: commentBody,
     };
-    fetch(`http://localhost:5000/api/comments/${commentID}`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/comments/${commentID}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(editedCommentBody),
@@ -108,7 +109,7 @@ export default function Comments() {
     setShowAcceptModal(false);
   };
   const submitAcceptComment = () => {
-    fetch(`http://localhost:5000/api/comments/accept/${commentID}`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/comments/accept/${commentID}`, {
       method: "POST",
     })
       .then((res) => res.json())
@@ -123,7 +124,7 @@ export default function Comments() {
   };
 
   const submitRejectComment = () => {
-    fetch(`http://localhost:5000/api/comments/reject/${commentID}`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/comments/reject/${commentID}`, {
       method: "POST",
     })
       .then((res) => res.json())
@@ -142,7 +143,7 @@ export default function Comments() {
       body: responseBody,
     };
 
-    fetch(`http://localhost:5000/api/comments/response/${commentID}`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/comments/response/${commentID}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(sendResponseBody),

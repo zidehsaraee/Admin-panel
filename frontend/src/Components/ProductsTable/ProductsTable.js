@@ -1,3 +1,4 @@
+require("dotenv").config();
 import React, { useState } from "react";
 import "./ProductsTable.css";
 import { Box } from "@mui/material";
@@ -24,7 +25,7 @@ import Tooltip from "@mui/material/Tooltip";
 import Avatar from "@mui/material/Avatar";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
 export default function ProductsTable({ allproducts, getAllproducts }) {
   const [page, setPage] = useState(0);
@@ -78,7 +79,7 @@ export default function ProductsTable({ allproducts, getAllproducts }) {
     formData.append("sale", editSaleProduct);
     formData.append("colors", editColorsProduct);
 
-    fetch(`http://localhost:5000/api/products/${productID}`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products/${productID}`, {
       method: "PUT",
       body: formData,
     })
@@ -102,7 +103,7 @@ export default function ProductsTable({ allproducts, getAllproducts }) {
     setShowDeleteModal(true);
   };
   const deleteSubmitAction = () => {
-    fetch(`http://localhost:5000/api/products/${productID}`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products/${productID}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -149,7 +150,7 @@ export default function ProductsTable({ allproducts, getAllproducts }) {
                         <Stack>
                           <Avatar
                             alt={product.title}
-                            src={`http://localhost:5000${product.img}`}
+                            src={`${process.env.REACT_APP_BACKEND_URL}${product.img}`}
                             sx={{ width: "70px", height: "70px" }}
                           />
                         </Stack>
@@ -283,16 +284,21 @@ export default function ProductsTable({ allproducts, getAllproducts }) {
               display: "flex",
               flexDirection: "row",
               justifyContent: "space-around",
-              margin:'5px 0'
+              margin: "5px 0",
             }}
           >
             <Avatar
               alt={editImgProduct}
-              src={`http://localhost:5000${editImgProduct}`}
+              src={`${process.env.REACT_APP_BACKEND_URL}${editImgProduct}${editImgProduct}`}
               sx={{ width: "70px", height: "70px" }}
             />
 
-            <Button variant="contained" component="label" startIcon={<CloudUploadIcon />} color="info">
+            <Button
+              variant="contained"
+              component="label"
+              startIcon={<CloudUploadIcon />}
+              color="info"
+            >
               Change Image
               <input
                 type="file"

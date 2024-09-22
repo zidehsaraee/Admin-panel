@@ -1,3 +1,4 @@
+require('dotenv').config();
 import React from "react";
 import { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
@@ -22,19 +23,19 @@ export default function Home() {
   }, []);
 
   const fetchUserCount = () => {
-    fetch("http://localhost:5000/api/users")
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users`)
       .then((res) => res.json())
       .then((result) => setUserCount(result.length))
       .catch((error) => console.error("Error fetching user count:", error));
   };
   const fetchProductsCount = () => {
-    fetch("http://localhost:5000/api/products/")
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products/`)
       .then((res) => res.json())
       .then((result) => setProductCount(result.length))
       .catch((error) => console.error("Error fetching product count:", error));
   };
   const fetchOrdersCount = () => {
-    fetch("http://localhost:5000/api/orders")
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/orders`)
       .then((res) => res.json())
       .then((result) => setOrderCount(result.length))
       .catch((error) => console.error("Error fetching order count:", error));
