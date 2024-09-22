@@ -1,4 +1,3 @@
-require('dotenv').config();
 import React, { useState, useEffect } from "react";
 import DeleteModal from "../../Components/Modals/DeleteModal/DeleteModal";
 import EditModal from "../../Components/Modals/EditModal/EditModal";

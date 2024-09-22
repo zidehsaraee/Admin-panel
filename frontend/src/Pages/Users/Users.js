@@ -1,4 +1,3 @@
-require('dotenv').config();
 import React, { useState, useEffect } from "react";
 import MessageBox from "../../Components/Alert/MessageBox";
 import DeleteModal from "../../Components/Modals/DeleteModal/DeleteModal";

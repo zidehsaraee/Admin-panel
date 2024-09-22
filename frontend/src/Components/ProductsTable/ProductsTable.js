@@ -1,4 +1,3 @@
-require("dotenv").config();
 import React, { useState } from "react";
 import "./ProductsTable.css";
 import { Box } from "@mui/material";

@@ -1,4 +1,3 @@
-require("dotenv").config();
 import React, { useState } from "react"
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
